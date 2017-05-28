@@ -7,6 +7,7 @@
  * Copyright (C) 2009-2011 Nakazoe
  * nakazoe@comiu.com
  * * * * * * * * * * * * * * * * * * * * * * */
+if($_GET['ignore']!="lite"){
 
 require_once(dirname(__FILE__).'/sharedlibs/sharedlibs.php');
 require_once(dirname(__FILE__).'/sharedlibs/Net/UserAgent/Mobile.php');
@@ -801,5 +802,7 @@ function AryPict(){
   $aryPict['F9FC'] = array(0 => 'E757',  1 => 350,          2 => '$E\'',      3 => 252);  //　げっそり         
 return $aryPict;
 }
+}
+
 }
 ?>
