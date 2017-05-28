@@ -72,7 +72,7 @@ if(strcmp($key,"CarrierName")==0){
 }
 
 function Init(){
-  $this -> PictDir = "./nucleus/plugins/adjustskin2mobile/images/";
+  $this->PictDir = $this->getDirectory() . 'images/';
   $this->AGENT   = Net_UserAgent_Mobile::factory();
   $this->Display = $this->AGENT->getDisplay();
   $this->RoundWidth();
