@@ -14,6 +14,7 @@ require_once(dirname(__FILE__).'/sharedlibs/Net/UserAgent/Mobile.php');
 
 class NP_AdjustSkin2Mobile extends NucleusPlugin{
 
+var $config;
 var $AGENT;
 var $CarrerName;
 var $CarrierShortName;
@@ -76,6 +77,10 @@ function Init(){
   $this->AGENT   = Net_UserAgent_Mobile::factory();
   $this->Display = $this->AGENT->getDisplay();
   $this->RoundWidth();
+  $conf_path = $this->getDirectory() . 'config.php';
+  if(is_file($conf_path)) include_once($conf_path);
+  $this->config['spSkinName']     = isset($config['spSkinName'])     ? $config['spSkinName']     : '<%DefaultSkinName%>/sphone';
+  $this->config['mobileSkinName'] = isset($config['mobileSkinName']) ? $config['mobileSkinName'] : '<%DefaultSkinName%>/mobile';
 }
 
 function event_PreAddComment($data) {
@@ -154,9 +159,9 @@ return $strHTML;
 //Skinのパース時　適用するSkinの切り替え
 function event_InitSkinParse($data){
   if($this->isMobile()){
-    $DefaultSkinName = $data['skin']->name."/mobile";
+    $DefaultSkinName = str_replace('<%DefaultSkinName%>', $data['skin']->name, $this->config['mobileSkinName']);
   }elseif($this->isSmartPhone()){
-    $DefaultSkinName = $data['skin']->name."/sphone";
+    $DefaultSkinName = str_replace('<%DefaultSkinName%>', $data['skin']->name, $this->config['spSkinName']);
   }else{
     $DefaultSkinName = $data['skin']->name;
   }
