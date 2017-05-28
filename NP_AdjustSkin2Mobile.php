@@ -77,7 +77,7 @@ function Init(){
   $this->RoundWidth();
 }
 
-function event_PreAddComment(&$data) {
+function event_PreAddComment($data) {
   if($this->isMobile()){
     $data['comment']['user'] = $contents = mb_convert_encoding($data['comment']['user'], _CHARSET, 'sjis-win');
     $data['comment']['body'] = $contents = mb_convert_encoding($data['comment']['body'], _CHARSET, 'sjis-win');
@@ -101,7 +101,7 @@ function event_PostAuthentication($data) {
 }
 
 //ContentType docomoはxhtm指定
-function event_PreSendContentType(&$data){
+function event_PreSendContentType($data){
 if($this->isMobile()){
 	$data['charset'] = 'Shift_JIS';
 
@@ -118,7 +118,7 @@ return;
 }
 
 //Skinパース前　パース終了までの間にdoConvertを通す
-function event_PreSkinParse(&$data) {
+function event_PreSkinParse($data) {
   // キャッシュはさせない
   header('Pragma: no-cache');
   header('Cache-Control: no-cache, must-revalidate');
@@ -151,7 +151,7 @@ return $strHTML;
 }
 
 //Skinのパース時　適用するSkinの切り替え
-function event_InitSkinParse(&$data){
+function event_InitSkinParse($data){
   if($this->isMobile()){
     $DefaultSkinName = $data['skin']->name."/mobile";
   }elseif($this->isSmartPhone()){
