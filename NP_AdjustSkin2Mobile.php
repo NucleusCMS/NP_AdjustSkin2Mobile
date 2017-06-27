@@ -204,9 +204,9 @@ function event_InitSkinParse($data){
     $ModelSkinName = $data['skin']->name."/".$this->CarrierShortName."/".$this->AGENT->getModel();
   }
 
-  if(SKIN::exists($ModelSkinName)){
+  if(isset($ModelSkinName) && SKIN::exists($ModelSkinName)){
     $SkinName = $ModelSkinName;
-  }elseif(SKIN::exists($CarrierSkinName) && !SKIN::exists($ModelSkinName)){
+  }elseif(isset($ModelSkinName) && SKIN::exists($CarrierSkinName) && !SKIN::exists($ModelSkinName)){
     $SkinName = $CarrierSkinName;
   }else{
     $SkinName = $DefaultSkinName;
