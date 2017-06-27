@@ -212,7 +212,7 @@ function event_InitSkinParse($data){
     $SkinName = $DefaultSkinName;
   }
 
-  $skin =& SKIN::createFromName($SkinName);
+  $skin = SKIN::createFromName($SkinName);
   $data['skin']->SKIN($skin->getID());
 
   return;
